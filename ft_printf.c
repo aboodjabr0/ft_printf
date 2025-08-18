@@ -6,7 +6,7 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 10:56:56 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/17 17:56:28 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:53:50 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ int	ft_printf(const char *input, ...)
 			ft_putchar(va_arg(args, int));
 		else if (input[i] == 's')
 			ft_putstr(va_arg(args, char *));
-		// else if (input[i] == 'p')
-		// 	ft_pointer(va_arg(args, void *));
+		else if (input[i] == 'p')
+			ft_pointer(va_arg(args, void *));
 		else if (input[i] == 'd' || input[i] == 'i')
 			ft_putnbr(va_arg(args, int));
-		// else if (input[i] == '%' && input[i + 1] == '%')
-		// 	ft_putchar('%');
+		else if (input[i] == 'u')
+			ft_unsigned(va_arg(args, unsigned long));
+		else if (input[i] == '%' && input[i + 1] == '%')
+			ft_putchar('%');
 		i++;
 	}
 	return (0);
@@ -43,5 +45,5 @@ int	main(void)
 	int	a;
 
 	a = -5;
-	ft_printf("%d", 11259163);
+	ft_printf("%p", 0);
 }

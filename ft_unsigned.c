@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*   ft_unsigned.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/17 11:20:41 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/18 14:53:19 by asauafth         ###   ########.fr       */
+/*   Created: 2025/08/18 14:14:33 by asauafth          #+#    #+#             */
+/*   Updated: 2025/08/18 14:28:48 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	*ptr(long int nb)
+int	ft_unsigned(unsigned int nb)
 {
-    if (nb == 0)
-    {
-        write(1, "(nil)", 5);
-        return (0);
-    }
+	int		i;
+	int		count;
+	char	c[10];
+	
+	i = 0;
+	count = 0;
+	if (nb == 0)
+		count += '0';
+	while (nb > 0)
+	{
+		c[i++] = nb % 10 + '0';
+		nb /= 10;
+	}
+	while (i-- > 0)
+		count += ft_putchar(c[i]);
+	return (count);
 }

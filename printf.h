@@ -6,7 +6,7 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 17:28:19 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/17 17:28:27 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:23:35 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 char	ft_putchar(char c);
 char	*ft_putstr(char *str);
 void	ft_putnbr(int nb);
+int		ft_unsigned(unsigned int nb);
 
 #endif
