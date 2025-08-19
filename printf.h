@@ -16,10 +16,11 @@
 # include <stdarg.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdint.h>
 
 char	ft_putchar(char c);
-char	*ft_putstr(char *str);
-void	ft_putnbr(int nb);
+char	ft_putstr(char *str);
+int	ft_putnbr(int nb);
 int		ft_unsigned(unsigned int nb);
 
 #endif

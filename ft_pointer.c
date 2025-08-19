@@ -12,11 +12,16 @@
 
 #include "printf.h"
 
-void	*ptr(long int nb)
+int	ft_pointer(void *p)
 {
-    if (nb == 0)
+    int n;
+
+    n = 0;
+    if (!p)
     {
-        write(1, "(nil)", 5);
-        return (0);
+        return ft_putstr("(nil)");
     }
+    n += ft_putstr("0x");
+    n += ft_to_hexa((unsigned long long)(uintptr_t)p, 'x');
+    return (n);
 }

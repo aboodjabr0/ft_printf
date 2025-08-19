@@ -21,7 +21,7 @@ int	ft_unsigned(unsigned int nb)
 	i = 0;
 	count = 0;
 	if (nb == 0)
-		count += '0';
+		return ft_putchar('0');
 	while (nb > 0)
 	{
 		c[i++] = nb % 10 + '0';

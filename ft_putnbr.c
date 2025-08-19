@@ -12,23 +12,22 @@
 
 #include "printf.h"
 
-void	ft_putnbr(int nb)
+int	ft_putnbr(int nb)
 {
 	long int	i;
+	int	count;
 
 	i = nb;
+	count = 0;
 	if (i < 0)
 	{
-		ft_putchar('-');
-		i *= -1;
-	}
-	if (i >= 0 && i <= 9)
-	{
-		ft_putchar(i + '0');
+		count += ft_putchar('-');
+		i = -i;
 	}
 	if (i > 9)
 	{
-		ft_putnbr(i / 10);
-		ft_putnbr(i % 10);
+		count += ft_putnbr(i / 10);
+		count += ft_putchar((i % 10) + '0');
 	}
+	return (count);
 }
