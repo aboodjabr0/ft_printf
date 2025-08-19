@@ -24,10 +24,10 @@ int	ft_putnbr(int nb)
 		count += ft_putchar('-');
 		i = -i;
 	}
-	if (i > 9)
+	if (i >= 10)
 	{
 		count += ft_putnbr(i / 10);
-		count += ft_putchar((i % 10) + '0');
 	}
+	count += ft_putchar((i % 10) + '0');
 	return (count);
 }
