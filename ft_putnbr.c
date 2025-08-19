@@ -6,16 +6,16 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 11:33:44 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/17 17:57:37 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:40:48 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(int nb)
 {
 	long int	i;
-	int	count;
+	int			count;
 
 	i = nb;
 	count = 0;

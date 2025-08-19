@@ -6,17 +6,46 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 10:56:56 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/18 14:53:50 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:18:45 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
+
+static void	check_specifier(va_list	args, char c, int *count)
+{
+	unsigned long	p;
+
+	if (c == 'c')
+		(*count) += ft_putchar(va_arg(args, int));
+	else if (c == 's')
+		(*count) += ft_putstr(va_arg(args, char *));
+	else if (c == 'p')
+	{
+		p = va_arg(args, unsigned long);
+		if (p == 0)
+			(*count) += ft_putstr("(nil)");
+		else
+		{
+			(*count) += ft_putstr("0x");
+			(*count) += ft_pointer(p);
+		}
+	}
+	else if (c == 'd' || c == 'i')
+		(*count) += ft_putnbr(va_arg(args, int));
+	else if (c == 'u')
+		(*count) += ft_unsigned(va_arg(args, unsigned int));
+	else if (c == 'x' || c == 'X')
+		(*count) += ft_to_hexa(va_arg(args, unsigned long), c);
+	else if (c == '%')
+		(*count) += ft_putchar('%');
+}
 
 int	ft_printf(const char *input, ...)
 {
 	va_list	args;
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 
 	if (!input)
 		return (-1);
@@ -31,21 +60,8 @@ int	ft_printf(const char *input, ...)
 		{
 			i++;
 			if (!input[i])
-				break;
-			if (input[i] == 'c')
-			count += ft_putchar(va_arg(args, int));
-			else if (input[i] == 's')
-			count += ft_putstr(va_arg(args, char *));
-			else if (input[i] == 'p')
-			count += ft_pointer(va_arg(args, void *));
-			else if (input[i] == 'd' || input[i] == 'i')
-			count += ft_putnbr(va_arg(args, int));
-			else if (input[i] == 'u')
-			count += ft_unsigned(va_arg(args, unsigned int));
-			else if (input[i] == 'x' || input[i] =='X')
-			count += ft_to_hexa(va_arg(args, unsigned int), input[i]);
-		else if (input[i] == '%')
-			count += ft_putchar('%');
+				break ;
+			check_specifier(args, input[i], &count);
 		}
 		i++;
 	}
@@ -53,68 +69,68 @@ int	ft_printf(const char *input, ...)
 	return (count);
 }
 
-int	main(void)
-{
-	int a = 42;
-	void *ptr = &a;
-	
-    int c1;
-    int c2;
+// int	main(void)
+// {
+// 	int a = 42;
+// 	void *ptr = &a;
 
-    c1 = printf("%c\n", 'c');
-    c2 = ft_printf("%c\n", 'c');
+//     int c1;
+//     int c2;
 
-    printf("printf returned: %d\n", c1);
-    printf("ft_printf returned: %d\n", c2);
-	printf("\n--------------------------------\n");
+//     c1 = printf("%c\n", 'c');
+//     c2 = ft_printf("%c\n", 'c');
 
-	int s1;
-	int s2;
+//     printf("printf returned: %d\n", c1);
+//     printf("ft_printf returned: %d\n", c2);
+// 	printf("\n--------------------------------\n");
 
-	s1 = printf("%s\n", "hello, world");
-	c2 = ft_printf ("%s\n", "hello, world");
+// 	int s1;
+// 	int s2;
 
-	printf("printf returned: %d\n", s1);
-    printf("ft_printf returned: %d\n", s2);
-	printf("\n--------------------------------\n");
+// 	s1 = printf("%s\n", "hello, world");
+// 	c2 = ft_printf ("%s\n", "hello, world");
 
-	int p1;
-	int p2; 
+// 	printf("printf returned: %d\n", s1);
+//     printf("ft_printf returned: %d\n", s2);
+// 	printf("\n--------------------------------\n");
 
-	p1 = printf("%p\n", ptr);
-	p2 = ft_printf ("%p\n", ptr);
+// 	int p1;
+// 	int p2;
 
-	printf("printf returned: %d\n", p1);
-    printf("ft_printf returned: %d\n", p2);
-	printf("\n--------------------------------\n");
+// 	p1 = printf("%p\n", ptr);
+// 	p2 = ft_printf ("%p\n", ptr);
 
-	int d_i_1;
-	int d_i_2;
+// 	printf("printf returned: %d\n", p1);
+//     printf("ft_printf returned: %d\n", p2);
+// 	printf("\n--------------------------------\n");
 
-	d_i_1 = printf("%d\n%i\n", 12345, 12345);
-	d_i_2 = ft_printf ("%d\n%i\n", 12345, 12345);
+// 	int d_i_1;
+// 	int d_i_2;
 
-	printf("printf returned: %d\n", d_i_1);
-    printf("ft_printf returned: %d\n", d_i_2);
-	printf("\n--------------------------------\n");
+// 	d_i_1 = printf("%d\n%i\n", 12345, 12345);
+// 	d_i_2 = ft_printf ("%d\n%i\n", 12345, 12345);
 
-	int u1;
-	int u2;
+// 	printf("printf returned: %d\n", d_i_1);
+//     printf("ft_printf returned: %d\n", d_i_2);
+// 	printf("\n--------------------------------\n");
 
-	u1 = printf("%u\n", 5482);
-	u2 = ft_printf ("%u\n", 5482);
+// 	int u1;
+// 	int u2;
 
-	printf("printf returned: %d\n", u1);
-    printf("ft_printf returned: %d\n", u2);
-	printf("\n--------------------------------\n");
+// 	u1 = printf("%u\n", 5482);
+// 	u2 = ft_printf ("%u\n", 5482);
 
-	int x1;
-	int x2; 
+// 	printf("printf returned: %d\n", u1);
+//     printf("ft_printf returned: %d\n", u2);
+// 	printf("\n--------------------------------\n");
 
-	x1 = printf("%x", 101);
-	x2 = ft_printf("%x, 101");
+// 	int x1;
+// 	int x2;
 
-	printf("printf returned: %d\n", x1);
-    printf("ft_printf returned: %d\n", x2);
-	printf("\n--------------------------------\n");
-}
+// 	x1 = printf("%x", 101);
+// 	x2 = ft_printf("%x, 101");
+
+// 	printf("printf returned: %d\n", x1);
+//     printf("ft_printf returned: %d\n", x2);
+// 	printf("\n--------------------------------\n");
+// }

@@ -6,22 +6,25 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 11:20:41 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/18 14:53:19 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:18:15 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	ft_pointer(void *p)
+int	ft_pointer(unsigned long p)
 {
-    int n;
+	char	*str;
+	int		count;
 
-    n = 0;
-    if (!p)
-    {
-        return ft_putstr("(nil)");
-    }
-    n += ft_putstr("0x");
-    n += ft_to_hexa((unsigned long long)(uintptr_t)p, 'x');
-    return (n);
+	str = "0123456789abcdef";
+	count = 0;
+	if (p >= 16)
+	{
+		count += ft_pointer(p / 16);
+		count += ft_putchar(str[p % 16]);
+	}
+	else
+		count += ft_putchar(str[p]);
+	return (count);
 }

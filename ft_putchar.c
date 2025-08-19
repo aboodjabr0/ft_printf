@@ -6,13 +6,13 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 11:28:51 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/17 17:27:40 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:09:13 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
-	return (int)write(1, &c, 1);
+	return ((int)write(1, &c, 1));
 }

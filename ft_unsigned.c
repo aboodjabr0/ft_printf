@@ -6,22 +6,22 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 14:14:33 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/18 14:28:48 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:40:54 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_unsigned(unsigned int nb)
 {
 	int		i;
 	int		count;
 	char	c[10];
-	
+
 	i = 0;
 	count = 0;
 	if (nb == 0)
-		return ft_putchar('0');
+		return (ft_putchar('0'));
 	while (nb > 0)
 	{
 		c[i++] = nb % 10 + '0';

@@ -6,11 +6,11 @@
 /*   By: asauafth <asauafth@Amman.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 11:06:47 by asauafth          #+#    #+#             */
-/*   Updated: 2025/08/17 16:00:37 by asauafth         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:40:50 by asauafth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *str)
 {
@@ -18,7 +18,7 @@ int	ft_putstr(char *str)
 
 	i = 0;
 	if (!str)
-	str = "(null)";
+		str = "(null)";
 	while (str[i] != '\0')
 	{
 		write(1, &str[i], 1);
